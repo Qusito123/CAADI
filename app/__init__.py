@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
 from flask_migrate import Migrate
+from flask_bootstrap import Bootstrap
 
 # local imports
 from config import app_config
@@ -19,6 +20,14 @@ def create_app(config_name):
 
     migrate = Migrate(app, db)
 
+    Bootstrap(app)
+
     from app import models
+
+    from .inventory import inventory as inventory_blueprint
+    app.register_blueprint(inventory_blueprint)
+
+    from .home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
 
     return app
