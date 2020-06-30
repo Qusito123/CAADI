@@ -1,0 +1,77 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Inventory{% endblock %}
+
+{% block body %}
+<div class="row" style="color:white">    
+    <div class="col-md-9"></div>  
+    <p class="lead font-italic">Book's Register</p>
+</div>
+<!-- pestanas -->
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="option1" autocomplete="off" checked>
+      <a href="{{ url_for('inventory.books_list') }}" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-book"></i> Book's
+    </a>
+    </label>
+    <label class="btn btn-outline-secondary">
+      <input type="radio" name="options" id="option2" autocomplete="off">
+      <a href="#" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-compact-disc"></i> DVD's
+    </a>
+    </label>
+    <label class="btn btn-outline-secondary">
+      <input type="radio" name="options" id="option3" autocomplete="off">
+      <a href="#" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-compact-disc"></i> CD's
+    </a>
+    </label>
+</div>
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+<!-- . -->
+<table class="table table-borderless"style="color:white">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Code</td>
+            <td>Book Name</td>
+            <td>Publisher</td>
+            <td>Shelf</td>
+            <td>Quantity</td>
+            <td>Language</td>
+            <td>
+                <a href="{{ url_for('inventory.books_add') }}" class="btn btn-outline-success">
+                    <i class="fa fa-plus"></i> Add
+                </a>
+
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for books in books %}
+            <tr>
+                <td>{{books.id}}</td>
+                <td>{{books.b_name}}</td>
+                <td>{{books.b_publisher}}</td>
+                <td>{{books.shelf.sh_desc}}</td>
+                <td>{{books.b_quantity}}</td>
+                <td>{{books.language.name}}</td>
+                <td>  
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>                   
+                </td>
+                <td>
+                    <form action="#" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>        
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody> 
+</table>
+{% endblock %}

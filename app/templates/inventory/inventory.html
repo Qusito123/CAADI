@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Inventory{% endblock %}
+
+{% block body %}
+<div class="row"style="color:white">    
+    <div class="col-md-9"></div>  
+    <p class="lead font-italic">Inventory</p>
+</div>
+<!-- pestanas -->
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-outline-secondary">
+      <input type="radio" name="options" id="option1" autocomplete="off">
+      <a href="{{ url_for('inventory.books_list') }}" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-book"></i> Book's
+    </a>
+    </label>
+    <label class="btn btn-outline-secondary">
+      <input type="radio" name="options" id="option2" autocomplete="off" >
+      <a href="#" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-compact-disc"></i> DVD's
+    </a>
+    </label>
+    <label class="btn btn-outline-secondary">
+      <input type="radio" name="options" id="option3" autocomplete="off">
+      <a href="#" class="btn btn-outline-info btn-block btn-lg">
+        <i class="fas fa-compact-disc"></i> CD's
+    </a>
+    </label>
+</div>
+{% endblock %}
